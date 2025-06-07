@@ -1,0 +1,13 @@
+# NOTE: This patch adds the ceclog patch to the prepare step in the PKGBUILD
+# Apply with `git apply archlinux-libcec-pkgbuild.patch`
+diff --git a/PKGBUILD b/PKGBUILD
+index 4682262..72409ce 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -17,0 +18,6 @@ sha256sums=('7f9e57ae9fad37649adb6749b8f1310a71ccf3e92ae8b2d1cc9e8ae2d1da83f8')
++
++prepare() {
++    cd "$pkgname-$pkgname-$pkgver"
++    file src/libcec/LibCEC.cpp
++    patch -p1 < ../../ceclog.patch
++}

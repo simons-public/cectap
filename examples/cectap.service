@@ -1,0 +1,13 @@
+[Unit]
+Description=Patched LibCEC log file message parser and handler
+After=network.target kodi-x11.service
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/local/scripts
+ExecStart=/usr/bin/python3 -um cectap_example.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

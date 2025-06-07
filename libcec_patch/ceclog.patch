@@ -1,0 +1,29 @@
+--- a/src/libcec/LibCEC.cpp
++++ b/src/libcec/LibCEC.cpp
+@@ -421,6 +421,26 @@
+ 
+ bool CLibCEC::CommandHandlerCB(const cec_command &command)
+ {
++  // begin log injection
++  FILE *fp = fopen("/tmp/cec.log", "a");
++  if (fp) {
++    fprintf(fp, "CEC: %x -> %x  opcode: 0x%02x", 
++      command.initiator, 
++      command.destination, 
++      command.opcode);
++
++    if (command.parameters.size > 0) {
++      fprintf(fp, " params:");
++      for (uint8_t i = 0; i < command.parameters.size; ++i) {
++        fprintf(fp, " %02x", command.parameters.data[i]);
++      }
++    }
++
++    fprintf(fp, "\n");
++    fclose(fp);
++  }
++  // end log injection
++
+   // send the command to all clients
+   for (std::vector<CECClientPtr>::iterator it = m_clients.begin(); it != m_clients.end(); it++)
+     if ((*it)->QueueCommandHandler(command))

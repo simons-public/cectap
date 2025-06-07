@@ -1,0 +1,20 @@
+[project]
+name = "cectap"
+version = "0.1.0"
+description = "Patched LibCEC log file message parser and handler"
+authors = [
+  { name = "Chris Simons", email = "chris@simons.network" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.7"
+
+[project.urls]
+Homepage = "https://github.com/simons-public/cectap"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]

@@ -71,7 +71,7 @@ class CECMonitor:
 
     def parse_line(self, line) -> Optional[CECMessage]:
         """ parse a line read from cec.log """
-        if not line:
+        if not line.strip():
             return None
 
         match = LOG_LINE_REGEX.match(line)
